@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+# This script is executed on the build host
+# at the time when the image is created. This is just a temporary script
+# until the software below is available in pkg.
+# Ideally everything gets upstreamed, removing the need for the bulk of this file.
+
+set -e
+
+HERE=$(readlink -f .)
+
+if [ -z "${uzip}" ] ; then
+ echo "\$uzip missing. Exiting"
+fi
+
+VERSION_TEXT=$(date +'%d/%m/%Y') $CIRRUS_REPO_CLONE_URL $CIRRUS_CHANGE_IN_REPO
+
+pkg install -y git go pkgconf glfw
+
+cd /tmp
+
+go get fyne.io/fynedesk
+cd ~/go/src/fyne.io/fynedesk/
+git checkout develop
+
+go build ./cmd/fynedesk_runner || (echo "Failed to build fynedesk_runner"; exit 1)
+go build ./cmd/fynedesk || (echo "Failed to build fynedesk"; exit 1)
+
+mkdir -p "${uzip}/usr/local/bin/"
+install -Dm00755 fynedesk_runner "${uzip}/usr/local/bin/fynedesk_runner"
+install -Dm00755 fynedesk "${uzip}/usr/local/bin/fynedesk"
+# We are not using xsessions for now
+# mkdir -p "${uzip}/usr/local/share/xsessions/"
+# install -Dm00644 fynedesk.desktop "${uzip}/usr/local/share/xsessions/fynedesk.desktop"
+
+cd -
+
+# Try to fix rc order issue; TODO: if this works then this probably needs to be put into build.sh
+sed -i -e 's|^# REQUIRE: .*|# REQUIRE: dhclient DAEMON dbus|g' "${uzip}/usr/local/etc/rc.d/avahi-daemon"
+rm "${uzip}/usr/local/etc/rc.d/avahi-daemon-e" || true
+sed -i -e 's|^# REQUIRE: .*|# REQUIRE: dhclient NETWORKING syslogd|g' "${uzip}/etc/rc.d/ntpdate"
+rm "${uzip}/etc/rc.d/ntpdate-e" || true

@@ -1,0 +1,8 @@
+# Go development packages are not strictly necessary
+# but FyneDesk users may want to build their own
+# Go programs
+go
+pkgconf
+glfw
+slim
+compton
