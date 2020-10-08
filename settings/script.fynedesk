@@ -13,7 +13,7 @@ if [ -z "${uzip}" ] ; then
  echo "\$uzip missing. Exiting"
 fi
 
-VERSION_TEXT=$(date +'%d/%m/%Y') $CIRRUS_REPO_CLONE_URL $CIRRUS_CHANGE_IN_REPO
+VERSION_TEXT=$(date +'%d/%m/%Y')
 
 pkg install -y git go pkgconf glfw
 
