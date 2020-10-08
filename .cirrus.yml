@@ -15,11 +15,12 @@ task:
 
   env:
     matrix:
-      DESKTOP: 'lumina'
-      DESKTOP: 'xfce'
-      DESKTOP: 'mate'
-      DESKTOP: 'kde'
-      DESKTOP: 'gnome'
+      # DESKTOP: 'lumina'
+      # DESKTOP: 'xfce'
+      # DESKTOP: 'mate'
+      # DESKTOP: 'kde'
+      # DESKTOP: 'gnome'
+      DESKTOP: 'fynedesk'
 
   env:
     matrix:
