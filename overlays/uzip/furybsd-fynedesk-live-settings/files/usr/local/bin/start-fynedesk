@@ -6,8 +6,9 @@ compton &
 FYNE_FONT="Luxi Sans"
 export FYNE_FONT
 
-FYNE_THEME="light"
-export FYNE_THEME
+# Do not set theme here, ship settings file in skel instead (if so desired)
+# FYNE_THEME="light"
+# export FYNE_THEME
 
 # slim sets the DISPLAY to "unix:0.0"
 # whereby "unix" is supposed to be the hostname
