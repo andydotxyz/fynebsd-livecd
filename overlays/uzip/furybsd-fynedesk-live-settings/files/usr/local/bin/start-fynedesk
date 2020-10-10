@@ -3,6 +3,12 @@
 # Drop shadows
 compton &
 
+FYNE_FONT="Luxi Sans"
+export FYNE_FONT
+
+FYNE_THEME="light"
+export FYNE_THEME
+
 # slim sets the DISPLAY to "unix:0.0"
 # whereby "unix" is supposed to be the hostname
 # but this does not seem to work for fynedesk_runner
