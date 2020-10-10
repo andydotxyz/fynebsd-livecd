@@ -3,7 +3,8 @@
 # Drop shadows
 compton &
 
-FYNE_FONT="Luxi Sans"
+# FYNE_FONT needs the path to a ttf file
+FYNE_FONT="/usr/local/share/fonts/TTF/luxisr.ttf"
 export FYNE_FONT
 
 # Do not set theme here, ship settings file in skel instead (if so desired)
