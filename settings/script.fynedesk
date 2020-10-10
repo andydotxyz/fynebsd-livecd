@@ -19,6 +19,7 @@ pkg install -y git go pkgconf glfw
 
 cd /tmp
 
+# FyneDesk
 go get fyne.io/fynedesk
 cd ~/go/src/fyne.io/fynedesk/
 git checkout 'feature/bsd'
@@ -32,6 +33,14 @@ install -Dm00755 fynedesk "${uzip}/usr/local/bin/fynedesk"
 # We are not using xsessions for now
 # mkdir -p "${uzip}/usr/local/share/xsessions/"
 # install -Dm00644 fynedesk.desktop "${uzip}/usr/local/share/xsessions/fynedesk.desktop"
+
+cd -
+
+# Fyne examples
+go get github.com/fyne-io/examples
+cd ~/go/src/github.com/fyne-io/examples/
+go build -v
+cp examples "${uzip}/usr/local/bin"
 
 cd -
 
