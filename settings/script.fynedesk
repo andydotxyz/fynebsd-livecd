@@ -21,7 +21,7 @@ cd /tmp
 
 go get fyne.io/fynedesk
 cd ~/go/src/fyne.io/fynedesk/
-git checkout develop
+git checkout 'feature/bsd'
 
 go build ./cmd/fynedesk_runner || (echo "Failed to build fynedesk_runner"; exit 1)
 go build ./cmd/fynedesk || (echo "Failed to build fynedesk"; exit 1)
