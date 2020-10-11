@@ -19,30 +19,45 @@ pkg install -y git go pkgconf glfw
 
 cd /tmp
 
+export DESTDIR=${uzip}
+export PREFIX=/usr/local
+mkdir -p ${DESTDIR}${PREFIX}/bin
+mkdir -p ${DESTDIR}${PREFIX}/share/xsessions
+mkdir -p ${DESTDIR}${PREFIX}/share/pixmaps
+
 # FyneDesk
 go get fyne.io/fynedesk
 cd ~/go/src/fyne.io/fynedesk/
 git checkout 'feature/bsd'
 
-go build ./cmd/fynedesk_runner || (echo "Failed to build fynedesk_runner"; exit 1)
-go build ./cmd/fynedesk || (echo "Failed to build fynedesk"; exit 1)
-
-mkdir -p "${uzip}/usr/local/bin/"
-install -Dm00755 fynedesk_runner "${uzip}/usr/local/bin/fynedesk_runner"
-install -Dm00755 fynedesk "${uzip}/usr/local/bin/fynedesk"
-# We are not using xsessions for now
-# mkdir -p "${uzip}/usr/local/share/xsessions/"
-# install -Dm00644 fynedesk.desktop "${uzip}/usr/local/share/xsessions/fynedesk.desktop"
-
+make && make install
 cd -
 
-# Fyne examples
-go get github.com/fyne-io/examples
-cd ~/go/src/github.com/fyne-io/examples/
-go build -v
-cp examples "${uzip}/usr/local/bin"
-
+# Fyne utility
+go get -d fyne.io/fyne/cmd/fyne
+cd ~/go/src/fyne.io/fyne/cmd/fyne
+git checkout b093037 # TODO after release we can just use "go get ..."
+go install
 cd -
+
+function fyne_get {
+  go get -d $2
+  cd ~/go/src/$2/$3
+  ~/go/bin/fyne package -icon $4
+  tar xf $1.tar.gz
+  make install
+  cd -
+}
+
+function fyne_get_example {
+  fyne_get $1 github.com/fyne-io/examples cmd/$1 ../../img/icon/$1.png
+}
+
+fyne_get_example calculator
+fyne_get_example clock
+fyne_get_example life
+
+fyne_get beebui github.com/andydotxyz/beebui cmd/beebui ../../icon.png
 
 # Wallpaper
 mkdir -p "${uzip}/usr/local/share/slim/themes/default/"
