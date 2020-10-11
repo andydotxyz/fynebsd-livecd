@@ -63,8 +63,5 @@ fyne_get beebui github.com/andydotxyz/beebui cmd/beebui ../../icon.png
 mkdir -p "${uzip}/usr/local/share/slim/themes/default/"
 cp ~/go/src/fyne.io/fynedesk/theme/lochfyne.jpg "${uzip}/usr/local/share/slim/themes/default/background.jpg"
 
-# Try to fix rc order issue; TODO: if this works then this probably needs to be put into build.sh
-sed -i -e 's|^# REQUIRE: .*|# REQUIRE: dhclient DAEMON dbus|g' "${uzip}/usr/local/etc/rc.d/avahi-daemon"
-rm "${uzip}/usr/local/etc/rc.d/avahi-daemon-e" || true
-sed -i -e 's|^# REQUIRE: .*|# REQUIRE: dhclient NETWORKING syslogd|g' "${uzip}/etc/rc.d/ntpdate"
-rm "${uzip}/etc/rc.d/ntpdate-e" || true
+# FyneDesk Dock needs desktop files in /usr/local/share/applications/
+cp "${uzip}"/usr/share/skel/Desktop/*.desktop "${uzip}"/usr/local/share/applications/
