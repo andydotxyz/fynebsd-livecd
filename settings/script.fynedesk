@@ -28,7 +28,7 @@ mkdir -p ${DESTDIR}${PREFIX}/share/pixmaps
 # FyneDesk
 go get fyne.io/fynedesk
 cd ~/go/src/fyne.io/fynedesk/
-git checkout 'feature/bsd'
+git checkout 'develop'
 
 make && make install
 cd -
