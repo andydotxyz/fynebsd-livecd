@@ -5,7 +5,7 @@ killall -9 fynedesk_runner >/dev/null 2>/dev/null
 killall -9 fynedesk >/dev/null 2>/dev/null
 
 # Drop shadows
-compton ie 1.0 -m 1.0 &
+compton -e 1.0 -m 1.0 &
 
 # FYNE_FONT needs the path to a ttf file
 FYNE_FONT="/usr/local/share/fonts/TTF/luxisr.ttf"
