@@ -6,7 +6,7 @@ freebsd_instance:
 
 env:
   CIRRUS_CLONE_DEPTH: 1
-  GITHUB_TOKEN: ENCRYPTED[!6358ad7cf25f119ecab48a7beffc4287775a9c0af95cf1149ae554a39ec9b4156bff82c2f6a2876a198938c6fabfbdd8!]
+  GITHUB_TOKEN: ENCRYPTED[edee4fa01977a15f89d823c4f876ee66b5bdfd32b6803f71602d6820d6338bca7c95df77fd008d479ce6bebceefc3a97]
 
 task:
   stateful: false
