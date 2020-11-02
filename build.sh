@@ -46,7 +46,7 @@ fi
 # fi
 
 if [ -z "${desktop}" ] ; then
-  export desktop=xfce
+  export desktop=fynedesk
 fi
 edition=$(echo $desktop | tr '[:lower:]' '[:upper:]')
 export edition
