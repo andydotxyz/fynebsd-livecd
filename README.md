@@ -1,4 +1,4 @@
-# furybsd-livecd [![Build Status](https://api.cirrus-ci.com/github/furybsd/furybsd-livecd.svg)](https://cirrus-ci.com/github/furybsd/furybsd-livecd)
+# furybsd-livecd [![Build Status](https://api.cirrus-ci.com/github/andydotxyz/furybsd-livecd.svg)](https://cirrus-ci.com/github/andydotxyz/furybsd-livecd)
 
 LiveCD builder for FuryBSD
 
@@ -12,7 +12,7 @@ It is also possible to directly download and write straight to a USB stick in on
 
 ```
 root@FreeBSD:/ # umount /dev/daX*
-root@FreeBSD:/ # curl -L "https://github.com/probonopd/furybsd-livecd/releases/download/continuous/FuryBSD-12.1-XFCE.iso" | dd of=/dev/daX bs=4m
+root@FreeBSD:/ # curl -L "https://github.com/andydotxyz/furybsd-livecd/releases/download/continuous/FuryBSD-12.1-FYNEDESK.iso" | dd of=/dev/daX bs=4m
 ```
 
 ## System Requirements for building LiveCD
@@ -32,50 +32,37 @@ root@FreeBSD:/ # curl -L "https://github.com/probonopd/furybsd-livecd/releases/d
 
 ## Customize (optional)
 
-Add more packages to XFCE edition:
+Add more packages to FyneDesk edition:
 ```
-edit settings/packages.xfce
+edit settings/packages.fynedesk
 ```
 
 Enable more services:
 ```
-edit settings/rc.conf.xfce
+edit settings/rc.conf.fynedesk
 ```
 
 ## Build a new release 
-Generate an ISO with XFCE:
+Generate an ISO with FyneDesk:
 ```
 ./build.sh
-```
-Generate an ISO with Gnome3:
-```
-./build.sh gnome
-```
-Generate an ISO with KDE Plasma 5:
-```
-./build.sh kde
 ```
 
 ## Burn
 
-Burn the XFCE image to DVD:
+Burn the image to DVD:
 
 ```
 pkg install cdrtools
-cdrecord /usr/local/furybsd/iso/FuryBSD-12.1-XFCE.iso
+cdrecord /usr/local/furybsd/iso/FuryBSD-12.1-FYNEDESK.iso
 ```
 
-Write the XFCE image to USB stick:
+Write the image to USB stick:
 ```
-sudo dd if=/usr/local/furybsd/iso/FuryBSD-12.1-XFCE.iso of=/dev/daX bs=4m status=progress
+sudo dd if=/usr/local/furybsd/iso/FuryBSD-12.1-FYNEDESK.iso of=/dev/daX bs=4m status=progress
 ```
 
 ## Credentials for live media
 
 There is no password for `liveuser`. The `liveuser` account is removed upon install.  There is also no root password until it is set in the installer.
 
-## Legacy repositories
-
-To keep the current furybsd organization well organized all legacy repositories which are no longer in use have been moved to the furybsd-legacy organization.
-
-https://github.com/furybsd-legacy
