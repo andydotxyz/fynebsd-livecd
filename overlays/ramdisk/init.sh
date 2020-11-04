@@ -13,14 +13,14 @@ mount -u -w /
 echo "==> Make mountpoints"
 mkdir -p /cdrom
 
-echo "Waiting for FURYBSD media to initialize"
+echo "Waiting for FYNEBSD media to initialize"
 while : ; do
-    [ -e "/dev/iso9660/FURYBSD" ] && echo "found /dev/iso9660/FURYBSD" && break
+    [ -e "/dev/iso9660/FYNEBSD" ] && echo "found /dev/iso9660/FYNEBSD" && break
     sleep 1
 done
 
 echo "==> Mount cdrom"
-mount_cd9660 /dev/iso9660/FURYBSD /cdrom
+mount_cd9660 /dev/iso9660/FYNEBSD /cdrom
 mdconfig -f /cdrom/data/system.uzip -u 1
 zpool import furybsd -o readonly=on
 
