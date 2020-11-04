@@ -56,7 +56,7 @@ if [ -z "$1" ] ; then
   export vol="FyneBSD-${version}"
 else
   rm /usr/local/furybsd/version >/dev/null 2>/dev/null || true
-  echo "${2}" > /usr/local/furybsd/tag
+  echo "${1}" > /usr/local/furybsd/tag
   export vol="FyneBSD-${version}-${tag}"
 fi
 
