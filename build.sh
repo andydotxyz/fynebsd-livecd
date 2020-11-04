@@ -5,8 +5,8 @@ set -e
 
 version="12.1"
 pkgset="branches/2020Q1" # TODO: Use it
-desktop=$1
-tag=$2
+desktop=fynedesk
+tag=$1
 export cwd=$(realpath | sed 's|/scripts||g')
 workdir="/usr/local"
 livecd="${workdir}/furybsd"
@@ -26,8 +26,8 @@ iso="${livecd}/iso"
 export uzip="${livecd}/uzip"
 cdroot="${livecd}/cdroot"
 ramdisk_root="${cdroot}/data/ramdisk"
-vol="furybsd"
-label="FURYBSD"
+vol="fynebsd"
+label="FYNEBSD"
 export DISTRIBUTIONS="kernel.txz base.txz"
 
 # Only run as superuser
@@ -45,27 +45,21 @@ fi
 #   exit 1
 # fi
 
-if [ -z "${desktop}" ] ; then
-  export desktop=fynedesk
-fi
-edition=$(echo $desktop | tr '[:lower:]' '[:upper:]')
-export edition
 if [ ! -f "${cwd}/settings/packages.${desktop}" ] ; then
   echo "${cwd}/settings/packages.${desktop} is missing, exiting"
   exit 1
 fi
 
 # Get the version tag
-if [ -z "$2" ] ; then
+if [ -z "$1" ] ; then
   rm /usr/local/furybsd/tag >/dev/null 2>/dev/null || true
-  export vol="FuryBSD-${version}-${edition}"
+  export vol="FyneBSD-${version}"
 else
   rm /usr/local/furybsd/version >/dev/null 2>/dev/null || true
   echo "${2}" > /usr/local/furybsd/tag
-  export vol="FuryBSD-${version}-${edition}-${tag}"
+  export vol="FyneBSD-${version}-${tag}"
 fi
 
-label="FURYBSD"
 isopath="${iso}/${vol}-${arch}.iso"
 
 cleanup()
@@ -184,6 +178,8 @@ dm()
 {
   case $desktop in
     'kde')
+      ;;
+    'fynedesk')
       ;;
     'gnome')
       ;;

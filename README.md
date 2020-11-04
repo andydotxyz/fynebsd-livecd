@@ -1,6 +1,6 @@
-# furybsd-livecd [![Build Status](https://api.cirrus-ci.com/github/andydotxyz/furybsd-livecd.svg)](https://cirrus-ci.com/github/andydotxyz/furybsd-livecd)
+# fynebsd-livecd [![Build Status](https://api.cirrus-ci.com/github/andydotxyz/furybsd-livecd.svg)](https://cirrus-ci.com/github/andydotxyz/furybsd-livecd)
 
-LiveCD builder for FuryBSD
+LiveCD builder for FyneBSD
 
 ## Continuous builds
 
@@ -12,7 +12,7 @@ It is also possible to directly download and write straight to a USB stick in on
 
 ```
 root@FreeBSD:/ # umount /dev/daX*
-root@FreeBSD:/ # curl -L "https://github.com/andydotxyz/furybsd-livecd/releases/download/continuous/FuryBSD-12.1-FYNEDESK.iso" | dd of=/dev/daX bs=4m
+root@FreeBSD:/ # curl -L "https://github.com/andydotxyz/furybsd-livecd/releases/download/continuous/FyneBSD-12.1.iso" | dd of=/dev/daX bs=4m
 ```
 
 ## System Requirements for building LiveCD
@@ -54,12 +54,12 @@ Burn the image to DVD:
 
 ```
 pkg install cdrtools
-cdrecord /usr/local/furybsd/iso/FuryBSD-12.1-FYNEDESK.iso
+cdrecord /usr/local/furybsd/iso/FyneBSD-12.1.iso
 ```
 
 Write the image to USB stick:
 ```
-sudo dd if=/usr/local/furybsd/iso/FuryBSD-12.1-FYNEDESK.iso of=/dev/daX bs=4m status=progress
+sudo dd if=/usr/local/furybsd/iso/FyneBSD-12.1.iso of=/dev/daX bs=4m status=progress
 ```
 
 ## Credentials for live media
