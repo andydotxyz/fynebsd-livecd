@@ -26,19 +26,22 @@ mkdir -p ${DESTDIR}${PREFIX}/share/xsessions
 mkdir -p ${DESTDIR}${PREFIX}/share/pixmaps
 
 # FyneDesk
-go get fyne.io/fynedesk
-cd ~/go/src/fyne.io/fynedesk/
+git clone github.com/fyne-io/fynedesk
+cd fynedesk
 git checkout 'develop'
 
 make && make install
 cd -
 
-# Fyne utility
-go get -d fyne.io/fyne/cmd/fyne
-cd ~/go/src/fyne.io/fyne/cmd/fyne
-git checkout b093037 # TODO after release we can just use "go get ..."
-go install
+git clone github.com/fyne-io/fin
+cd fin
+
+make && make install
 cd -
+
+
+# Fyne utility
+go get fyne.io/fyne/cmd/fyne
 
 function fyne_get {
   go get -d $2
