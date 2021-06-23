@@ -42,6 +42,7 @@ cd -
 
 # Fyne utility
 go get fyne.io/fyne/cmd/fyne
+export PATH=$PATH:~/go/bin/
 
 function fyne_get {
   go get -d $2
