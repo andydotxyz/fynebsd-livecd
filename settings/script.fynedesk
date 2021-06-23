@@ -52,19 +52,8 @@ function fyne_get {
   cd -
 }
 
-function fyne_get_example {
-  fyne_get $1 github.com/fyne-io/examples cmd/$1 ../../img/icon/$1.png
-}
-
-fyne_get_example calculator
-fyne_get_example clock
-fyne_get_example life
-
-fyne_get beebui github.com/andydotxyz/beebui cmd/beebui ../../icon.png
-
-# Wallpaper
-mkdir -p "${uzip}/usr/local/share/slim/themes/default/"
-cp ~/go/src/fyne.io/fynedesk/theme/lochfyne.jpg "${uzip}/usr/local/share/slim/themes/default/background.jpg"
+fyne get github.com/fyne-io/calculator
+fyne get github.com/fyne-io/terminal/cmd/fyneterm
 
 # FyneDesk Dock needs desktop files in /usr/local/share/applications/
 cp "${uzip}"/usr/share/skel/Desktop/*.desktop "${uzip}"/usr/local/share/applications/
