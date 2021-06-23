@@ -20,7 +20,6 @@ nvidia-driver # !i386
 mesa-libs
 mesa-dri
 open-vm-tools
-virtualbox-ose-additions
 xauth
 xinit
 setxkbmap
