@@ -87,18 +87,10 @@ fi
 ask=`pickone "Intel" "nVidia"`
 
 if [ "$ask" == "Intel" ]; then
-  ask=`pickone "drm-kmod" "drm-legacy-kmod" "xf86-video-intel"`
+  ask=`pickone "drm-kmod" "xf86-video-intel"`
   if [ "$ask" == "drm-kmod" ]; then
     rm /etc/X11/xorg.conf
     xterm -e pkg install -fy drm-kmod && pkg clean -a -y
-    info "Xorg will now be restarted"
-    sysrc -f /etc/rc.conf kld_list+="/boot/modules/i915kms.ko"
-    service kld restart
-    killall Xorg
-  fi
-  if [ "$ask" == "drm-legacy-kmod" ]; then
-    rm /etc/X11/xorg.conf
-    xterm -e pkg install -fy drm-legacy-kmod && pkg clean -a -y
     info "Xorg will now be restarted"
     sysrc -f /etc/rc.conf kld_list+="/boot/modules/i915kms.ko"
     service kld restart
